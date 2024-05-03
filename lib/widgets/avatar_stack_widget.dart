@@ -19,7 +19,8 @@ class AvatarStackWidget extends StatelessWidget {
           child: CircleAvatar(
             radius: 45,
             backgroundColor: kgrey,
-            backgroundImage: NetworkImage('https://img.freepik.com/free-photo/freedom-concept-with-hiker-mountain_23-2148107064.jpg'),
+            backgroundImage: NetworkImage(
+                'https://img.freepik.com/free-photo/freedom-concept-with-hiker-mountain_23-2148107064.jpg'),
           ),
         ),
       ),

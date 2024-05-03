@@ -1,9 +1,8 @@
 import 'package:payment_management_app/models/user/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-
 class UserDatabaseHelper {
- static const _databaseVersion = 1;
+  static const _databaseVersion = 1;
 
   static const table = 'user';
 
@@ -68,8 +67,4 @@ class UserDatabaseHelper {
       ),
     );
   }
-
 }
-
-
-

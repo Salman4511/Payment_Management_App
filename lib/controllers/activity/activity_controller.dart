@@ -33,21 +33,18 @@ class ActivityDatabaseController extends GetxController {
 
   final List<ActivityModel> initialActivity = [
     ActivityModel(
-      id: 1,
-      product: 'Apple Macbook Pro 16 - Silver',
-      company: 'Apple Store',
-      returnMessage:'Return Time Remaining 2 Weeks',
-      price: 3234.03,
-      address: '1321, Colorado Street, Suit 32 - 90876'
-    ),
+        id: 1,
+        product: 'Apple Macbook Pro 16 - Silver',
+        company: 'Apple Store',
+        returnMessage: 'Return Time Remaining 2 Weeks',
+        price: 3234.03,
+        address: '1321, Colorado Street, Suit 32 - 90876'),
     ActivityModel(
-      id: 2,
-       product: 'Ueno Coffee Filters',
+        id: 2,
+        product: 'Ueno Coffee Filters',
         company: 'Target',
         returnMessage: 'Return Time Remaining 2 Weeks',
         price: 3234.03,
-        address: '1321, Colorado Street, Suit 32 - 90876'
-        ),
-   
+        address: '1321, Colorado Street, Suit 32 - 90876'),
   ];
 }

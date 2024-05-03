@@ -6,7 +6,10 @@ class RecentPaymentUserWidget extends StatelessWidget {
   final String secondName;
   final String profile;
   const RecentPaymentUserWidget({
-    super.key, required this.name, required this.secondName, required this.profile,
+    super.key,
+    required this.name,
+    required this.secondName,
+    required this.profile,
   });
 
   @override
@@ -14,7 +17,7 @@ class RecentPaymentUserWidget extends StatelessWidget {
     return Column(
       children: [
         kheight10,
-         CircleAvatar(
+        CircleAvatar(
           radius: 35,
           backgroundImage: NetworkImage(profile),
         ),
@@ -22,7 +25,7 @@ class RecentPaymentUserWidget extends StatelessWidget {
           width: 80,
         ),
         kheight5,
-         SizedBox(
+        SizedBox(
             height: 40,
             width: 60,
             child: Text(textAlign: TextAlign.center, '$name $secondName'))

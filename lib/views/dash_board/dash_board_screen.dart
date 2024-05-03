@@ -9,12 +9,13 @@ import 'package:payment_management_app/widgets/balance_card_widget.dart';
 import 'package:payment_management_app/widgets/recent_payment_user_widget.dart';
 import 'package:payment_management_app/widgets/top_bar_widget.dart';
 
-class DashBoardScreen extends GetView<RecentUserDatabaseController>  {
+class DashBoardScreen extends GetView<RecentUserDatabaseController> {
+  final RecentUserDatabaseController recentUsercontroller =
+      Get.put(RecentUserDatabaseController());
+  final ActivityDatabaseController activityController =
+      Get.put(ActivityDatabaseController());
 
-    final RecentUserDatabaseController recentUsercontroller = Get.put(RecentUserDatabaseController());
-    final ActivityDatabaseController activityController = Get.put(ActivityDatabaseController());
-
-   DashBoardScreen({Key? key}) : super(key: key);
+  DashBoardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class DashBoardScreen extends GetView<RecentUserDatabaseController>  {
       backgroundColor: kgrey.shade100,
       body: CustomScrollView(
         slivers: <Widget>[
-           SliverPadding(
+          SliverPadding(
             padding: const EdgeInsets.only(top: 60),
             sliver: SliverToBoxAdapter(child: TopBarWidget()),
           ),
@@ -41,27 +42,25 @@ class DashBoardScreen extends GetView<RecentUserDatabaseController>  {
             sliver: SliverToBoxAdapter(
               child: SizedBox(
                 height: 130,
-                child: Obx(
-                  (){ 
-                     if (recentUsercontroller.recentUsers.isNotEmpty) { 
-                  return  ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    physics: const BouncingScrollPhysics(),
-                    itemCount: recentUsercontroller.recentUsers.length,
-                    itemBuilder: (context, index) {
-                       final recentUser = recentUsercontroller.recentUsers[index];
-                        return RecentPaymentUserWidget(
-                          name: recentUser.name,
-                          secondName:recentUser.secondName, 
-                          profile: recentUser.profilePicture,
+                child: Obx(() {
+                  if (recentUsercontroller.recentUsers.isNotEmpty) {
+                    return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: recentUsercontroller.recentUsers.length,
+                        itemBuilder: (context, index) {
+                          final recentUser =
+                              recentUsercontroller.recentUsers[index];
+                          return RecentPaymentUserWidget(
+                            name: recentUser.name,
+                            secondName: recentUser.secondName,
+                            profile: recentUser.profilePicture,
                           );
-                    }
-                  );
-                  }       else {
-        return const CircularProgressIndicator(); 
-      }
+                        });
+                  } else {
+                    return const CircularProgressIndicator();
                   }
-                ),
+                }),
               ),
             ),
           ),
@@ -101,29 +100,25 @@ class DashBoardScreen extends GetView<RecentUserDatabaseController>  {
                   kheight20,
                   SizedBox(
                     height: 300,
-                    child: Obx(
-                      (){
-                         if (activityController.activity.isNotEmpty) { 
-                          return
-                       ListView.builder(
-                        padding: const EdgeInsets.only(left: 18, right: 18),
-                        itemCount: activityController.activity.length,
-                        itemBuilder: (context, index) {
-                           final activity = activityController.activity[index];
-                          return  ActivityTileWidget(
-                              product:activity.product, 
-                              company: activity.company, 
-                              returnMessage: activity.returnMessage, 
-                              price: activity.price, 
-                              address: activity.address
-                              );
-                        }
-                      );
+                    child: Obx(() {
+                      if (activityController.activity.isNotEmpty) {
+                        return ListView.builder(
+                            padding: const EdgeInsets.only(left: 18, right: 18),
+                            itemCount: activityController.activity.length,
+                            itemBuilder: (context, index) {
+                              final activity =
+                                  activityController.activity[index];
+                              return ActivityTileWidget(
+                                  product: activity.product,
+                                  company: activity.company,
+                                  returnMessage: activity.returnMessage,
+                                  price: activity.price,
+                                  address: activity.address);
+                            });
                       } else {
                         return const CircularProgressIndicator();
                       }
-                      }
-                    ),
+                    }),
                   ),
                 ],
               ),

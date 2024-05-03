@@ -6,9 +6,9 @@ import 'package:payment_management_app/utils/constants.dart';
 import 'package:payment_management_app/widgets/settings_tile_widget.dart';
 
 class SettingsScreen extends GetView<UserDatabaseController> {
-    final UserDatabaseController controller = Get.put(UserDatabaseController());
+  final UserDatabaseController controller = Get.put(UserDatabaseController());
 
-   SettingsScreen({super.key});
+  SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,32 +29,31 @@ class SettingsScreen extends GetView<UserDatabaseController> {
                 kwidth10
               ],
             ),
-            Obx((){
+            Obx(() {
               if (controller.user.isNotEmpty) {
-        final user = controller.user[0];
-               return Center(
-                child: Column(
-                  children: [
-                     CircleAvatar(
-                      radius: 55,
-                      backgroundColor: kwhite,
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundImage: NetworkImage(user.profilePicture),
+                final user = controller.user[0];
+                return Center(
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                        radius: 55,
+                        backgroundColor: kwhite,
+                        child: CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(user.profilePicture),
+                        ),
                       ),
-                    ),
-                    kheight5,
-                    Text(user.name, style: textstyle14),
-                     Text(user.mailId),
-                    kheight45
-                  ],
-                ),
-              );
-            
-            } else {
-              return CircularProgressIndicator();
-            }
-    }  ), 
+                      kheight5,
+                      Text(user.name, style: textstyle14),
+                      Text(user.mailId),
+                      kheight45
+                    ],
+                  ),
+                );
+              } else {
+                return const CircularProgressIndicator();
+              }
+            }),
             Container(
               height: 490,
               color: kwhite,

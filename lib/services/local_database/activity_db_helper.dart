@@ -1,7 +1,7 @@
 import 'package:payment_management_app/models/activity_model/activity_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-class ActivityDatabaseHelper{
+class ActivityDatabaseHelper {
   static const _databaseVersion = 1;
 
   static const table = 'activity';
@@ -51,7 +51,7 @@ class ActivityDatabaseHelper{
         columnProduct: activity.product,
         columnCompany: activity.company,
         columnReturnMsg: activity.returnMessage,
-        columnAddress:activity.address,
+        columnAddress: activity.address,
         columnPrice: activity.price
       },
     );
@@ -63,13 +63,12 @@ class ActivityDatabaseHelper{
     return List.generate(
       maps.length,
       (index) => ActivityModel(
-        id: maps[index][columnId],
-        product: maps[index][columnProduct],
-        company: maps[index][columnCompany],
-        returnMessage: maps[index][columnReturnMsg],
-        address:maps[index][columnAddress],
-        price: maps[index][columnPrice]
-      ),
+          id: maps[index][columnId],
+          product: maps[index][columnProduct],
+          company: maps[index][columnCompany],
+          returnMessage: maps[index][columnReturnMsg],
+          address: maps[index][columnAddress],
+          price: maps[index][columnPrice]),
     );
   }
 }

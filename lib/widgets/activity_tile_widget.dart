@@ -3,13 +3,18 @@ import 'package:payment_management_app/utils/constants.dart';
 
 class ActivityTileWidget extends StatelessWidget {
   final String product;
-     final String company;
-    final String returnMessage;
-    final double price;
-     final String address;
+  final String company;
+  final String returnMessage;
+  final double price;
+  final String address;
 
   const ActivityTileWidget({
-    super.key, required this.product, required this.company, required this.returnMessage, required this.price, required this.address,
+    super.key,
+    required this.product,
+    required this.company,
+    required this.returnMessage,
+    required this.price,
+    required this.address,
   });
 
   @override
