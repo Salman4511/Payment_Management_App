@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:payment_management_app/utils/constants.dart';
 
 class RecentPaymentUserWidget extends StatelessWidget {
+  final String name;
+  final String secondName;
+  final String profile;
   const RecentPaymentUserWidget({
-    super.key,
+    super.key, required this.name, required this.secondName, required this.profile,
   });
 
   @override
@@ -11,17 +14,18 @@ class RecentPaymentUserWidget extends StatelessWidget {
     return Column(
       children: [
         kheight10,
-        const CircleAvatar(
+         CircleAvatar(
           radius: 35,
+          backgroundImage: NetworkImage(profile),
         ),
         const SizedBox(
           width: 80,
         ),
         kheight5,
-        const SizedBox(
+         SizedBox(
             height: 40,
             width: 60,
-            child: Text(textAlign: TextAlign.center, 'data sdsdf'))
+            child: Text(textAlign: TextAlign.center, '$name $secondName'))
       ],
     );
   }

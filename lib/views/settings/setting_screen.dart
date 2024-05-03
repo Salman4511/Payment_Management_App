@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:payment_management_app/controllers/user/user_db_controller.dart';
 import 'package:payment_management_app/utils/constants.dart';
 import 'package:payment_management_app/widgets/settings_tile_widget.dart';
 
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
+class SettingsScreen extends GetView<UserDatabaseController> {
+    final UserDatabaseController controller = Get.put(UserDatabaseController());
+
+   SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,23 +29,32 @@ class SettingsScreen extends StatelessWidget {
                 kwidth10
               ],
             ),
-            Center(
-              child: Column(
-                children: [
-                  const CircleAvatar(
-                    radius: 55,
-                    backgroundColor: kwhite,
-                    child: CircleAvatar(
-                      radius: 50,
+            Obx((){
+              if (controller.user.isNotEmpty) {
+        final user = controller.user[0];
+               return Center(
+                child: Column(
+                  children: [
+                     CircleAvatar(
+                      radius: 55,
+                      backgroundColor: kwhite,
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: NetworkImage(user.profilePicture),
+                      ),
                     ),
-                  ),
-                  kheight5,
-                  Text('Mae Jamison', style: textstyle14),
-                  const Text('maej@gmail.com'),
-                  kheight45
-                ],
-              ),
-            ),
+                    kheight5,
+                    Text(user.name, style: textstyle14),
+                     Text(user.mailId),
+                    kheight45
+                  ],
+                ),
+              );
+            
+            } else {
+              return CircularProgressIndicator();
+            }
+    }  ), 
             Container(
               height: 490,
               color: kwhite,

@@ -1,13 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:payment_management_app/controllers/activity/activity_controller.dart';
+import 'package:payment_management_app/controllers/recent_users/recent_user_db_controller.dart';
 import 'package:payment_management_app/utils/constants.dart';
 import 'package:payment_management_app/widgets/activity_tile_widget.dart';
 import 'package:payment_management_app/widgets/balance_card_widget.dart';
 import 'package:payment_management_app/widgets/recent_payment_user_widget.dart';
 import 'package:payment_management_app/widgets/top_bar_widget.dart';
 
-class DashBoardScreen extends StatelessWidget {
-  const DashBoardScreen({Key? key}) : super(key: key);
+class DashBoardScreen extends GetView<RecentUserDatabaseController>  {
+
+    final RecentUserDatabaseController recentUsercontroller = Get.put(RecentUserDatabaseController());
+    final ActivityDatabaseController activityController = Get.put(ActivityDatabaseController());
+
+   DashBoardScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +22,8 @@ class DashBoardScreen extends StatelessWidget {
       backgroundColor: kgrey.shade100,
       body: CustomScrollView(
         slivers: <Widget>[
-          const SliverPadding(
-            padding: EdgeInsets.only(top: 60),
+           SliverPadding(
+            padding: const EdgeInsets.only(top: 60),
             sliver: SliverToBoxAdapter(child: TopBarWidget()),
           ),
           const SliverToBoxAdapter(child: BalanceCardWidget()),
@@ -34,12 +41,26 @@ class DashBoardScreen extends StatelessWidget {
             sliver: SliverToBoxAdapter(
               child: SizedBox(
                 height: 130,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  physics: const BouncingScrollPhysics(),
-                  itemCount: 10,
-                  itemBuilder: (context, index) =>
-                      const RecentPaymentUserWidget(),
+                child: Obx(
+                  (){ 
+                     if (recentUsercontroller.recentUsers.isNotEmpty) { 
+                  return  ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: recentUsercontroller.recentUsers.length,
+                    itemBuilder: (context, index) {
+                       final recentUser = recentUsercontroller.recentUsers[index];
+                        return RecentPaymentUserWidget(
+                          name: recentUser.name,
+                          secondName:recentUser.secondName, 
+                          profile: recentUser.profilePicture,
+                          );
+                    }
+                  );
+                  }       else {
+        return const CircularProgressIndicator(); 
+      }
+                  }
                 ),
               ),
             ),
@@ -80,11 +101,28 @@ class DashBoardScreen extends StatelessWidget {
                   kheight20,
                   SizedBox(
                     height: 300,
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(left: 18, right: 18),
-                      itemCount: 2,
-                      itemBuilder: (context, index) =>
-                          const ActivityTileWidget(),
+                    child: Obx(
+                      (){
+                         if (activityController.activity.isNotEmpty) { 
+                          return
+                       ListView.builder(
+                        padding: const EdgeInsets.only(left: 18, right: 18),
+                        itemCount: activityController.activity.length,
+                        itemBuilder: (context, index) {
+                           final activity = activityController.activity[index];
+                          return  ActivityTileWidget(
+                              product:activity.product, 
+                              company: activity.company, 
+                              returnMessage: activity.returnMessage, 
+                              price: activity.price, 
+                              address: activity.address
+                              );
+                        }
+                      );
+                      } else {
+                        return const CircularProgressIndicator();
+                      }
+                      }
                     ),
                   ),
                 ],

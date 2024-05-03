@@ -17,10 +17,10 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-    const DashBoardScreen(),
+     DashBoardScreen(),
     const ScanRecieptScreen(),
     const PaymentScreen(),
-    const SettingsScreen()
+     SettingsScreen()
   ];
 
   void _onItemTapped(int index) {

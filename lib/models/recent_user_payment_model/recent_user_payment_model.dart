@@ -1,16 +1,13 @@
-class UserModel {
+class RecentUserPaymentModel {
   final int id;
   final String name;
-  final String mailId;
-  final double balance;
+  final String secondName;
   final String profilePicture;
 
-  UserModel({
+  RecentUserPaymentModel({
     required this.id,
     required this.name,
-    required this.mailId,
-    required this.balance,
+    required this.secondName,
     required this.profilePicture,
   });
-
 }

@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:payment_management_app/utils/constants.dart';
 
 class ActivityTileWidget extends StatelessWidget {
+  final String product;
+     final String company;
+    final String returnMessage;
+    final double price;
+     final String address;
+
   const ActivityTileWidget({
-    super.key,
+    super.key, required this.product, required this.company, required this.returnMessage, required this.price, required this.address,
   });
 
   @override
@@ -14,29 +20,29 @@ class ActivityTileWidget extends StatelessWidget {
         Row(
           children: [
             Text(
-              'Apple Macbook Pro 16 - Silver',
+              product,
               style: textstyle5,
             ),
             const Spacer(),
             Text(
-              '\$999',
+              '\$ ${price.toString()}',
               style: textstyle6,
             ),
             kwidth10
           ],
         ),
         Text(
-          'Apple Store',
+          company,
           style: textstyle6,
         ),
         kheight5,
         Text(
-          'Return Time Remaining 2 Weeks',
+          returnMessage,
           style: textstyle8,
         ),
         kheight5,
         Text(
-          '1321, Colorado Street, Suit 32 - 90876',
+          address,
           style: textstyle9,
         ),
         kheight10,

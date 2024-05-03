@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:payment_management_app/controllers/user/user_db_controller.dart';
 import 'package:payment_management_app/views/bottom_nav_bar/bottom_nav_bar.dart';
 
-void main() {
+void main()async {
+
   runApp(const MyApp());
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -18,6 +23,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const BottomNavBar(),
+       initialBinding: BindingsBuilder(() {
+        Get.put<UserDatabaseController>(UserDatabaseController());
+      }),
     );
   }
 }
