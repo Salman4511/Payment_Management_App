@@ -17,10 +17,15 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
 
   final List<Widget> _pages = [
-     DashBoardScreen(),
+    DashBoardScreen(),
     const ScanRecieptScreen(),
-    const PaymentScreen(),
-     SettingsScreen()
+    const PaymentScreen(
+      img:
+          'https://img.freepik.com/free-photo/freedom-concept-with-hiker-mountain_23-2148107064.jpg',
+      firstName: 'Marcus',
+      lastName: 'Chabatappi',
+    ),
+    SettingsScreen()
   ];
 
   void _onItemTapped(int index) {

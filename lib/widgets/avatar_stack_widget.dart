@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:payment_management_app/utils/constants.dart';
 
 class AvatarStackWidget extends StatelessWidget {
+  final String img;
   const AvatarStackWidget({
     super.key,
+    required this.img,
   });
 
   @override
@@ -14,13 +16,12 @@ class AvatarStackWidget extends StatelessWidget {
       child: CircleAvatar(
         radius: 120,
         backgroundColor: kblue.shade200,
-        child: const CircleAvatar(
+        child: CircleAvatar(
           radius: 52,
           child: CircleAvatar(
             radius: 45,
             backgroundColor: kgrey,
-            backgroundImage: NetworkImage(
-                'https://img.freepik.com/free-photo/freedom-concept-with-hiker-mountain_23-2148107064.jpg'),
+            backgroundImage: NetworkImage(img),
           ),
         ),
       ),

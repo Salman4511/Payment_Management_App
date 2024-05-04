@@ -3,7 +3,10 @@ import 'package:payment_management_app/utils/constants.dart';
 import 'package:payment_management_app/widgets/avatar_stack_widget.dart';
 
 class PaymentScreen extends StatelessWidget {
-  const PaymentScreen({super.key});
+  final String img;
+  final String firstName;
+  final String lastName;
+  const PaymentScreen({super.key, required this.img, required this.firstName, required this.lastName});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,7 @@ class PaymentScreen extends StatelessWidget {
         child: Column(
           children: [
             kheight60,
-            const AvatarStackWidget(),
+             AvatarStackWidget(img: img,),
             kheight100,
             Text(
               'Paying',
@@ -21,7 +24,7 @@ class PaymentScreen extends StatelessWidget {
             ),
             kheight5,
             Text(
-              'Marcus Chapadappi',
+              '$firstName $lastName',
               style: textstyle11,
             ),
             kheight20,

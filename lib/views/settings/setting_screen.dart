@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:payment_management_app/controllers/settings/settings_controller.dart';
 import 'package:payment_management_app/controllers/user/user_db_controller.dart';
 import 'package:payment_management_app/utils/constants.dart';
 import 'package:payment_management_app/widgets/settings_tile_widget.dart';
 
-class SettingsScreen extends GetView<UserDatabaseController> {
-  final UserDatabaseController controller = Get.put(UserDatabaseController());
+class SettingsScreen extends GetView<SettingsController> {
+  final UserDatabaseController userController =
+      Get.put(UserDatabaseController());
+  final SettingsController settingsController = Get.put(SettingsController());
 
   SettingsScreen({super.key});
 
@@ -30,8 +33,8 @@ class SettingsScreen extends GetView<UserDatabaseController> {
               ],
             ),
             Obx(() {
-              if (controller.user.isNotEmpty) {
-                final user = controller.user[0];
+              if (userController.user.isNotEmpty) {
+                final user = userController.user[0];
                 return Center(
                   child: Column(
                     children: [
@@ -59,32 +62,41 @@ class SettingsScreen extends GetView<UserDatabaseController> {
               color: kwhite,
               child: Column(
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.all(18.0),
+                  Padding(
+                    padding: const EdgeInsets.all(18.0),
                     child: SizedBox(
                       height: 45,
                       child: CupertinoSearchTextField(
                         itemColor: kblue,
                         itemSize: 25,
                         placeholder: 'Search Settings',
+                        onChanged: (query) {
+                          settingsController.searchSettings(query);
+                        },
                       ),
                     ),
                   ),
                   kheight20,
                   SizedBox(
                     height: 370,
-                    child: ListView.separated(
-                      padding: const EdgeInsets.only(left: 18, right: 18),
-                      itemCount: settingsItems.length,
-                      separatorBuilder: (context, index) => const Divider(
-                        color: Colors.grey,
-                        height: 1,
-                      ),
-                      itemBuilder: (context, index) => SettingsTileWidget(
-                        title: settingsItems[index]['title'],
-                        icon: settingsItems[index]['icon'],
-                      ),
-                    ),
+                    child: Obx(() {
+                      return ListView.separated(
+                          padding: const EdgeInsets.only(left: 18, right: 18),
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: settingsController.filteredSettings.length,
+                          separatorBuilder: (context, index) => const Divider(
+                                color: Colors.grey,
+                                height: 1,
+                              ),
+                          itemBuilder: (context, index) {
+                            final setting =
+                                settingsController.filteredSettings[index];
+                            return SettingsTileWidget(
+                              title: setting['title'],
+                              icon: setting['icon'],
+                            );
+                          });
+                    }),
                   ),
                 ],
               ),
@@ -95,34 +107,3 @@ class SettingsScreen extends GetView<UserDatabaseController> {
     );
   }
 }
-
-List<Map<String, dynamic>> settingsItems = [
-  {
-    'title': 'Personal Info',
-    'icon': Icons.person,
-  },
-  {
-    'title': 'My QR Code',
-    'icon': Icons.qr_code_scanner,
-  },
-  {
-    'title': 'Banks and Cards',
-    'icon': Icons.food_bank,
-  },
-  {
-    'title': 'Payment Preferences',
-    'icon': Icons.payments,
-  },
-  {
-    'title': 'Automatic Payments',
-    'icon': Icons.restart_alt,
-  },
-  {
-    'title': 'Login and Security',
-    'icon': Icons.login,
-  },
-  {
-    'title': 'Notifications',
-    'icon': Icons.notifications,
-  },
-];

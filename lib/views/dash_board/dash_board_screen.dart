@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:payment_management_app/controllers/activity/activity_controller.dart';
 import 'package:payment_management_app/controllers/recent_users/recent_user_db_controller.dart';
 import 'package:payment_management_app/utils/constants.dart';
+import 'package:payment_management_app/views/payment_screen/payment_screen.dart';
 import 'package:payment_management_app/widgets/activity_tile_widget.dart';
 import 'package:payment_management_app/widgets/balance_card_widget.dart';
 import 'package:payment_management_app/widgets/recent_payment_user_widget.dart';
@@ -51,10 +52,22 @@ class DashBoardScreen extends GetView<RecentUserDatabaseController> {
                         itemBuilder: (context, index) {
                           final recentUser =
                               recentUsercontroller.recentUsers[index];
-                          return RecentPaymentUserWidget(
-                            name: recentUser.name,
-                            secondName: recentUser.secondName,
-                            profile: recentUser.profilePicture,
+                          return GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => PaymentScreen(
+                                        img: recentUser.profilePicture,
+                                        firstName: recentUser.name,
+                                        lastName: recentUser.secondName,
+                                      ),
+                                  transition: Transition.fade
+                                  );
+                            },
+                            child: RecentPaymentUserWidget(
+                              name: recentUser.name,
+                              secondName: recentUser.secondName,
+                              profile: recentUser.profilePicture,
+                            ),
                           );
                         });
                   } else {
@@ -104,6 +117,7 @@ class DashBoardScreen extends GetView<RecentUserDatabaseController> {
                       if (activityController.activity.isNotEmpty) {
                         return ListView.builder(
                             padding: const EdgeInsets.only(left: 18, right: 18),
+                            physics: const BouncingScrollPhysics(),
                             itemCount: activityController.activity.length,
                             itemBuilder: (context, index) {
                               final activity =
