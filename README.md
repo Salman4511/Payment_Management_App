@@ -3,11 +3,10 @@ This project is a small Payment Management app that utilizes local database stor
 
 ## Screenshots
 
-![Screenshot_1714800624](https://github.com/Salman4511/Payment_Management_App/assets/138016294/6d875437-2a25-4edd-abab-626dbdccfe53)
+<img src="https://github.com/Salman4511/Payment_Management_App/assets/138016294/8e94d721-26b1-4ee0-9e2d-ef099a937b89" alt="" width="300px">
+<img src="https://github.com/Salman4511/Payment_Management_App/assets/138016294/2deae570-c326-4cae-b5c1-6bb3a0b5e6ca" alt="" width="300px">
+<img src="https://github.com/Salman4511/Payment_Management_App/assets/138016294/6d875437-2a25-4edd-abab-626dbdccfe53" alt="" width="300px">
 
-![Screenshot_1714800632](https://github.com/Salman4511/Payment_Management_App/assets/138016294/2deae570-c326-4cae-b5c1-6bb3a0b5e6ca)
-
-![Screenshot_1714800637](https://github.com/Salman4511/Payment_Management_App/assets/138016294/8e94d721-26b1-4ee0-9e2d-ef099a937b89)
 
 ## Features
 UI Design: The app's user interface is designed following provided screenshots, emphasizing Sliver-based layouts for smooth scrolling.
