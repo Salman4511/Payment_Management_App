@@ -1,16 +1,24 @@
-# payment_management_app
+Payment Management App
+This project is a small Payment Management app that utilizes local database storage and incorporates smooth user experience principles. The app is built using MVC architecture, GetX for state management, and integrates SQFlite for local data storage.
 
-A new Flutter project.
+Screenshots
 
-## Getting Started
+![Screenshot_1714800624](https://github.com/Salman4511/Payment_Management_App/assets/138016294/6d875437-2a25-4edd-abab-626dbdccfe53)
 
-This project is a starting point for a Flutter application.
+![Screenshot_1714800632](https://github.com/Salman4511/Payment_Management_App/assets/138016294/2deae570-c326-4cae-b5c1-6bb3a0b5e6ca)
 
-A few resources to get you started if this is your first Flutter project:
+![Screenshot_1714800637](https://github.com/Salman4511/Payment_Management_App/assets/138016294/8e94d721-26b1-4ee0-9e2d-ef099a937b89)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Features
+UI Design: The app's user interface is designed following provided screenshots, emphasizing Sliver-based layouts for smooth scrolling.
+Model-View-Controller (MVC): The app architecture is organized using the MVC pattern for separation of concerns and modularity.
+State Management with GetX: GetX is used for efficient state management, providing reactive and easy-to-use functionalities.
+Local Database (SQFlite): Integration with SQFlite enables local data storage for managing transactions and user profiles.
+Smooth User Experience: UI interactions and animations are optimized for a seamless user experience.
+Animated ListView: ListView widgets are animated based on user gestures for intuitive navigation and interaction.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Technologies Used
+Flutter: Framework for building cross-platform applications.
+GetX: State management library for Flutter.
+SQFlite: Local database for storing app data.
+Dart: Programming language used for Flutter development.
